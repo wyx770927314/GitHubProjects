@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Hello RedirectView!!!</h1>
+<a href="{% url 'thirdapp:turnToRedirectView' %}?k=1111">turnToRedirectView</a>
+<h1>++++++++++++++++++++++这是分割线++++++++++++++++++++++</h1>
+<h1>Hello,这是title:{{ title }}</h1>
+<div>Hello,这是value:{{ value }}</div>
+<form action="" method="post">
+    {% csrf_token %}
+    <input type="submit" value="Submit">
+</form>
+<h1>++++++++++++++++++++++这是分割线++++++++++++++++++++++</h1>
+<h3>{{listview_title}}</h3>
+<table border="2">
+    {{% for foo in listview_personinfo %}
+    <tr>
+        <th>{{ foo.name }}</th>
+        <th>{{ foo.age }}</th>
+    </tr>
+    {% endfor %}
+    }
+</table>
+<br>
+{% if is_paginated %}
+<div class="pagination">
+    <span class="page-links">
+        {% if page_obj.has_previous %}
+            <a href="/?page={{ page_obj.previous_page_number }}">上一页</a>
+        {% endif %}
+        {{% if page_obj.has_next %}
+            <a href="/?page={{ page_obj.next_page_number }}">下一页</a>
+        {% endif %}
+    </span>
+    <br>
+    <br>
+    <span class="page-current">
+        第{{ page_obj.number }}页
+        共{{ page_obj.paginator.num_pages }}页
+    </span>
+</div>
+{% endif %}
+<h1>++++++++++++++++++++++这是分割线++++++++++++++++++++++</h1>
+<h3>{{ title }}</h3>
+<table>
+    <tr border="2">
+        <th>{{ personinfo.name }}</th>
+        <th>{{ personinfo.age }}</th>
+        <th>{{ personinfo.hobby }}</th>
+    </tr>
+
+</table>
+<br>
+</body>
+</html>

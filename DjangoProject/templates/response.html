@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Hello World !</h1>
+<a href="{% url 'firstapp:downloadfile_one' %}">HttpResponse下载-git命令</a>
+<a href="{% url 'firstapp:downloadfile_two' %}">StreamingHttpResponse下载-命令</a>
+<a href="{% url 'firstapp:downloadfile_three' %}">FileResponse下载-账号</a>
+<h3>++++++++++++++++++++++++++++++++++++我是分割线++++++++++++++++++++++++++++++++++++</h3>
+<form action="" method="post">
+    {#Django的CSRF防御机制#}
+    {% csrf_token %}
+    <input type="text" name="user"/>
+    <input type="submit" value="提交">
+</form>
+<h3>++++++++++++++++++++++++++++++++++++我是分割线++++++++++++++++++++++++++++++++++++</h3>
+<h4>文件上传功能demo</h4>
+<form action="http://127.0.0.1:8000/upload/" method="post" enctype="multipart/form-data">
+    {#Django的CSRF防御机制#}
+    {% csrf_token %}
+    <input type="file" name="myfile"/>
+    <input type="submit" name="上传">
+</form>
+
+</body>
+</html>
